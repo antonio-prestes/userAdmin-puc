@@ -22,4 +22,4 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: user-api/package-lock.json
       - run: yarn install
-      - run: yarn link
+      - run: yarn lint
