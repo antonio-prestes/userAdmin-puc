@@ -2,7 +2,7 @@ const express = require('express');
 const {MongoClient} = require('mongodb');
 const UserRepository = require('./user-repository');
 const bodyParser = require('body-parser');
-const {objectId} = require('bson');
+const {ObjectID} = require('bson');
 const cors = require('cors');
 
 const app = express();
@@ -43,7 +43,7 @@ app.post('/users', async (request, response) => {
 
 app.get('/users/:id', async (request, response) => {
   try {
-    const user = await userRepository.findOneById(objectId(request.params.id));
+    const user = await userRepository.findOneById(ObjectID(request.params.id));
     response.json(user);
   } catch (e) {
     response.status(404).json({
@@ -54,7 +54,7 @@ app.get('/users/:id', async (request, response) => {
 
 app.put('/users/:id', async (request, response) => {
   try {
-    const user = await userRepository.update(objectId(request.params.id), request.body);
+    const user = await userRepository.update(ObjectID(request.params.id), request.body);
     response.json(user);
   } catch (e) {
     response.status(404).json({
@@ -65,7 +65,7 @@ app.put('/users/:id', async (request, response) => {
 
 app.delete('/users/:id', async (request, response) => {
   try {
-    await userRepository.delete(objectId(request.params.id));
+    await userRepository.delete(ObjectID(request.params.id));
     response.status(200).json(request.body);
   } catch (e) {
     console.log(e.message);
