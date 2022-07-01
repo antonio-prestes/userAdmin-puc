@@ -60,4 +60,4 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: user-api/package-lock.json
       - run: yarn install
-      - run: yarn test -- --forceExit
+      - run: yarn test --forceExit
