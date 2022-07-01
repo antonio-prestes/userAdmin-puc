@@ -11,6 +11,15 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-        "max-len": ["error", {"code":  90}]
+        "max-len": ["error", {"code":  90}],
+        "require-jsdoc": ["error", {
+            "require": {
+                "FunctionDeclaration": false,
+                "MethodDefinition": false,
+                "ClassDeclaration": false,
+                "ArrowFunctionExpression": false,
+                "FunctionExpression": false
+            }
+        }]
     }
 }
