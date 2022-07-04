@@ -1,9 +1,9 @@
 name: User Admin CI
 on:
   push:
-    branches: ["master"]
+    branches: [ "master" ]
   pull_request:
-    branches: ["master"]
+    branches: [ "master" ]
 
 defaults:
   run:
@@ -36,3 +36,37 @@ jobs:
           cache: 'npm'
           cache-dependency-path: user-api/package-lock.json
       - run: yarn install
+
+  testes:
+    name: Testes de sistema E2E
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: root
+        ports:
+          - 27017:27017
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Starts API server in background
+        run:
+          yarn --prefix ../user-api install
+          yarn --prefix ../user-api start &
+      - name: run cypress
+        uses: cypress-io/github-actions@v2
+        with:
+          build: yarn build
+          start: yarn start
+          working-directory: user-admin
+      - name: Arquiva os videos e screen
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: artifacts
+          patch:
+            user-admin/cypress/screenshots/
+            user-admin/cypress/videos
+          retention-days: 1
