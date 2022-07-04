@@ -53,7 +53,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Starts API server in background
         run:
-          yarn --prefix ../user-api install
+          yarn --prefix ../user-api add
           yarn --prefix ../user-api start &
       - name: run cypress
         uses: cypress-io/github-action@v2
@@ -66,7 +66,7 @@ jobs:
         if: failure()
         with:
           name: artifacts
-          patch:
+          path:
             user-admin/cypress/screenshots/
             user-admin/cypress/videos
           retention-days: 1
