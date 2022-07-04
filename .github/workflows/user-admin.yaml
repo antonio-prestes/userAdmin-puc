@@ -58,6 +58,7 @@ jobs:
       - name: run cypress
         uses: cypress-io/github-action@v2
         with:
+          config-file: cypress.config.ts
           build: yarn build
           start: yarn start
           working-directory: user-admin
