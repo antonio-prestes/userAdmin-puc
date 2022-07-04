@@ -1,0 +1,43 @@
+name: User Admin CI
+on:
+  push:
+    branches:
+      [ "Master" ]
+
+  pull_request:
+    branches:
+      [ "Master" ]
+
+defaults:
+  run:
+    working-directory: user-admin
+
+
+jobs:
+  lint:
+    name: Análise estática
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'npm'
+          cache-dependency-path: user-api/package-lock.json
+      - run: yarn install
+      - run: yarn eslint
+
+  vulnerability:
+    name: Análise vulnerabilidade
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'npm'
+          cache-dependency-path: user-api/package-lock.json
+      - run: yarn install
+      - run: yarn audit --production

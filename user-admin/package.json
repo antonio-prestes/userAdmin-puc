@@ -6,6 +6,8 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "audit": "^0.0.6",
+    "eslint": ">=5.16.0",
     "jsonexport": "^3.2.0",
     "ra-data-json-server": "^3.19.2",
     "react": "^17.0.2",
@@ -20,7 +22,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "lint": "eslint src/**",
+    "lint:fix": "eslint src/** --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +45,8 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^10.3.0"
+    "cypress": "^10.3.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.30.1"
   }
 }
