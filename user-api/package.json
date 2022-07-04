@@ -15,7 +15,8 @@
   "devDependencies": {
     "eslint-config-google": "^0.14.0",
     "jest": "^27.3.1",
-    "supertest": "^6.1.6"
+    "supertest": "^6.1.6",
+    "mongodb": "^4.2.0"
   },
   "dependencies": {
     "audit": "^0.0.6",
@@ -23,7 +24,6 @@
     "bson": "^4.6.4",
     "cors": "^2.8.5",
     "eslint": ">=5.16.0",
-    "express": "^4.17.1",
-    "mongodb": "^4.2.0"
+    "express": "^4.17.1"
   }
 }
