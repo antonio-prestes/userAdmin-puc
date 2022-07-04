@@ -66,7 +66,7 @@ describe("Gestão de usuários", () => {
                 cy.get('.MuiTable-root tbody tr').should('have.length', 0)
             })
         });
-        it.only('formulário de edição', () => {
+        it('formulário de edição', () => {
             cy.request('POST', 'http://localhost:4000/users', {
                 name: "Diego",
                 email: "diego@diego.com"
